@@ -1,1 +1,58 @@
-<p>progress works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Barra de progreso</h4>
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-striped progress-bar-animated"
+            role="progressbar"
+            [attr.aria-valuenow]="progreso"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [style.width]="progreso + '%'"
+            style="width: 75%"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="button-addon1"
+            (click)="cambiarValor(-5)"
+          >
+            <i class="mdi mdi-minus"></i>
+          </button>
+          <input
+            type="text"
+            class="form-control"
+            name="progreso"
+            [(ngModel)]="progreso"
+          />
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="button-addon1"
+            (click)="cambiarValor(+5)"
+          >
+            <i class="mdi mdi-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">texto 2</div>
+    </div>
+  </div>
+</div>
