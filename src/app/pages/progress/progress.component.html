@@ -7,10 +7,22 @@
           <div
             class="progress-bar progress-bar-striped progress-bar-animated"
             role="progressbar"
-            [attr.aria-valuenow]="progreso"
+            [attr.aria-valuenow]="progreso1"
             aria-valuemin="0"
             aria-valuemax="100"
-            [style.width]="progreso + '%'"
+            [style.width]="progreso1 + '%'"
+            style="width: 75%"
+          ></div>
+        </div>
+        <br />
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+            role="progressbar"
+            [attr.aria-valuenow]="progreso2"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [style.width]="progreso2 + '%'"
             style="width: 75%"
           ></div>
         </div>
@@ -23,36 +35,23 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <div class="input-group mb-3">
-          <button
-            class="btn btn-primary"
-            type="button"
-            id="button-addon1"
-            (click)="cambiarValor(-5)"
-          >
-            <i class="mdi mdi-minus"></i>
-          </button>
-          <input
-            type="text"
-            class="form-control"
-            name="progreso"
-            [(ngModel)]="progreso"
-          />
-          <button
-            class="btn btn-primary"
-            type="button"
-            id="button-addon1"
-            (click)="cambiarValor(+5)"
-          >
-            <i class="mdi mdi-plus"></i>
-          </button>
-        </div>
+        <app-incrementador
+          (actulizaValor)="progreso1 = $event"
+          nombre="Progress Azul"
+          [progreso]="progreso1"
+        ></app-incrementador>
       </div>
     </div>
   </div>
   <div class="col-6">
     <div class="card">
-      <div class="card-body">texto 2</div>
+      <div class="card-body">
+        <app-incrementador
+          (actulizaValor)="progreso2 = $event"
+          nombre="Progress Verde"
+          [progreso]="progreso2"
+        ></app-incrementador>
+      </div>
     </div>
   </div>
 </div>

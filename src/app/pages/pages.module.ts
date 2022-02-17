@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
+import { GraficosDonaComponent } from '../components/graficos-dona/graficos-dona.component';
+import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
@@ -13,8 +16,10 @@ import { ProgressComponent } from './progress/progress.component';
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
+    IncrementadorComponent,
+    GraficosDonaComponent,
   ],
-  imports: [SharedModule, PAGES_ROUTES, FormsModule],
+  imports: [SharedModule, PAGES_ROUTES, FormsModule, NgChartsModule],
   exports: [DashboardComponent, ProgressComponent, Graficas1Component],
 })
 export class PagesModule {}

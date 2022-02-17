@@ -6,10 +6,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 import { PagesModule } from './pages/pages.module';
+import { IncrementadorComponent } from './components/incrementador/incrementador.component';
+import { FormsModule } from '@angular/forms';
+import { GraficosDonaComponent } from './components/graficos-dona/graficos-dona.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
-  imports: [BrowserModule, PagesModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, PagesModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
