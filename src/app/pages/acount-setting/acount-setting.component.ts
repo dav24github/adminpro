@@ -1,6 +1,5 @@
-import { DOCUMENT, registerLocaleData } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Component, OnInit } from '@angular/core';
+import { SettingsService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-acount-setting',
