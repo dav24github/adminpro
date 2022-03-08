@@ -10,6 +10,8 @@ import { PagesComponent } from './pages.component';
 import { PAGES_ROUTES } from './pages.routes';
 import { ProgressComponent } from './progress/progress.component';
 import { AcountSettingComponent } from './acount-setting/acount-setting.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AcountSettingComponent } from './acount-setting/acount-setting.componen
     IncrementadorComponent,
     GraficosDonaComponent,
     AcountSettingComponent,
+    PromesasComponent,
+    RxjsComponent,
   ],
   imports: [SharedModule, PAGES_ROUTES, FormsModule, NgChartsModule],
   exports: [DashboardComponent, ProgressComponent, Graficas1Component],
