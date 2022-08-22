@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuardGuard } from '../services/service.index';
 import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.component';
 import { AcountSettingComponent } from './acount-setting/acount-setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -12,6 +13,7 @@ const pagesRoutes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [LoginGuardGuard],
     children: [
       {
         path: 'dashboard',

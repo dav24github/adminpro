@@ -8,27 +8,56 @@ var app = express();
 
 var Usuario = require("../models/usuarios");
 
-var passport = require("passport");
-
-require("../middlewares/google")(passport);
-
 // ====================================
 // Autenticación de Google
 // ====================================
-app.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+app.post("/google", (req, res) => {
+  var usuarioGoogle = req.body;
 
-app.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
-  (req, res) => {
-    return res.json({
-      user: req.user,
-    });
-  }
-);
+  Usuario.findOne({ email: usuarioGoogle.email }).then((usuario) => {
+    if (usuario) {
+      if (usuario.google === false) {
+        return done(null, {
+          mensaje: "Debe de usar su autenicación normal",
+        });
+      } else {
+        // Esta autenticado con google
+        usuario.password = ":)"; // we do not send the pass
+
+        var token = jwt.sign({ usuario: usuario }, SEED, {
+          expiresIn: 14400,
+        });
+
+        return res.status(200).json({
+          usuario: usuario,
+          token: token,
+          id: usuario._id,
+        });
+      }
+    } else {
+      // El usuario no existe
+      var usuario = new Usuario({
+        nombre: usuarioGoogle.nombre,
+        email: usuarioGoogle.email,
+        password: ":)",
+        img: usuarioGoogle.img,
+        google: true,
+      });
+
+      usuario.save(function (err, usuario) {
+        var token = jwt.sign({ usuario: usuario }, SEED, {
+          expiresIn: 14400,
+        });
+
+        return res.status(200).json({
+          usuario: usuario,
+          token: token,
+          id: usuario._id,
+        });
+      });
+    }
+  });
+});
 
 // =========================================
 // Autenticaticación normal
@@ -71,6 +100,7 @@ app.post("/", (req, res) => {
     res.status(200).json({
       ok: true,
       mensaje: "Login post correcto",
+      usuario: usuarioDB,
       token: token,
       id: usuarioDB._id,
     });
