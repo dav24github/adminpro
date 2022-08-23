@@ -21,7 +21,6 @@ export class LoginGuardGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this._usuarioServices.estaLogeado()) {
-      console.log('Paso el guard');
       return true;
     } else {
       console.log('Bloqueado por el guard');

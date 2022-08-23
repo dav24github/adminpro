@@ -33,9 +33,13 @@ export class BreadcrumbsComponent implements OnInit {
 
   getDataRoute() {
     return this.router.events.pipe(
-      filter((evento) => evento instanceof ActivationEnd),
-      filter((evento: any) => evento.snapshot.firstChild === null),
-      map((evento: any) => evento.snapshot.data)
+      filter((evento) => evento instanceof ActivationEnd), // entrega 2 ActivationEnd
+      filter((evento: any) => evento.snapshot.firstChild === null), // Para buscar la data
+      map((evento: any) => {
+        console.log(evento.snapshot.data);
+
+        return evento.snapshot.data;
+      })
     );
   }
 }
