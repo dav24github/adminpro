@@ -5,6 +5,7 @@ import { AcountSettingComponent } from './acount-setting/acount-setting.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { PagesComponent } from './pages.component';
+import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
@@ -40,6 +41,11 @@ const pagesRoutes: Routes = [
         path: 'account-settings',
         component: AcountSettingComponent,
         data: { titulo: 'Ajustes del Tema' },
+      },
+      {
+        path: 'perfil',
+        component: ProfileComponent,
+        data: { titulo: 'Perfil de usuario' },
       },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],

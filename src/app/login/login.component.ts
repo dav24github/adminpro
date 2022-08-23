@@ -60,7 +60,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     );
 
     this._usuarioService.loginGoogle(usuario).subscribe((resp) => {
-      this.router.navigate(['/dashboard']);
+      // this.router.navigate(['/dashboard']);
+      window.location.href = '#/dashboard';
     });
   }
 
@@ -73,7 +74,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     this._usuarioService
       .login(usuario, form.value.recuerdame)
-      .subscribe((resp) => this.router.navigate(['/dashboard']));
+      .subscribe((resp) => {
+        // this.router.navigate(['/dashboard']);
+        window.location.href = '#/dashboard';
+      });
   }
 
   decodeJwtResponse(token: string) {
