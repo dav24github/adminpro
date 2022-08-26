@@ -14,9 +14,9 @@ app.get("/", (req, res, next) => {
   var desde = req.query.desde || 0;
   desde = Number(desde);
 
-  Usuario.find({}, "nombre email img role")
+  Usuario.find({}, "nombre email img role google")
     .skip(desde)
-    .limit(2)
+    .limit(4)
     .exec((err, usuarios) => {
       if (err) {
         return res.status(400).json({
@@ -29,7 +29,7 @@ app.get("/", (req, res, next) => {
       Usuario.count({}, (err, conteo) => {
         res.status(200).json({
           ok: true,
-          mensaje: usuarios,
+          usuarios: usuarios,
           total: conteo,
         });
       });

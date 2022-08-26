@@ -10,3 +10,8 @@
 .w150 {
   width: 150px;
 }
+
+i {
+  content: "\f164";
+  font-family: "Font Awesome 5 Free";
+}

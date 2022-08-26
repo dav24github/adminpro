@@ -18,7 +18,7 @@
     <div class="alert alert-warning text-center">
       <strong>Cargando</strong>
       <br />
-      <i class="fa fa-refresh f-spin fa-2x"></i>
+      <i class="fas fa-sync fa-spin" style="font-size: 1.8rem"></i>
       <br />
       <span>Espere por favor</span>
     </div>
@@ -29,7 +29,9 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">Usuario registrados ( <small>123</small> )</h3>
+        <h3 class="card-title">
+          Usuario registrados ( <small>{{ totalResgistros }}</small> )
+        </h3>
 
         <table class="table table-hover">
           <thead>
@@ -44,12 +46,17 @@
           </thead>
 
           <tbody>
-            <tr>
+            <tr *ngFor="let usuario of usuarios">
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {{ usuario.email }}
+              </td>
+              <td>{{ usuario.nombre }}</td>
+              <td>{{ usuario.role }}</td>
+              <td>
+                <label class="label label-danger">Google</label>
+                <label class="label label-info">Normal</label>
+              </td>
               <td>
                 <button class="btn btn-primary">
                   <i class="fa fa-save"></i>
@@ -62,8 +69,12 @@
             </tr>
           </tbody>
         </table>
-        <button class="btn btn-secondary">Anteriores</button>
-        <button class="btn btn-secondary">Siguientes</button>
+        <button (click)="cambiarDesde(-5)" class="btn btn-secondary">
+          Anteriores
+        </button>
+        <button (click)="cambiarDesde(5)" class="btn btn-secondary">
+          Siguientes
+        </button>
       </div>
     </div>
   </div>
