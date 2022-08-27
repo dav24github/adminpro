@@ -9,6 +9,7 @@ import {
   UsuarioService,
   SubirArchivoService,
 } from './service.index';
+import { ModalService } from '../components/modal-upload/modal.service';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import {
     SidebarService,
     SharedService,
     SubirArchivoService,
+    ModalService,
   ],
 })
 export class ServiceModule {}
