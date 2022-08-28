@@ -11,7 +11,7 @@ export class ModalService {
   oculto: string = 'oculto';
   @Output() notificacion = new EventEmitter<string>();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ocultarModal() {
     this.oculto = 'oculto';

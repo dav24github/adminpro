@@ -48,8 +48,9 @@
             <tr *ngFor="let hospital of hospitales">
               <td>
                 <img
-                  [src]="hospital.img | imagen: 'hospital'"
-                  class="img-50 img-circle pointer"
+                  (click)="actualizarImagen(hospital)"
+                  [src]="hospital.img | imagen: 'hospitales'"
+                  class="img-50 pointer"
                 />
               </td>
               <td>
