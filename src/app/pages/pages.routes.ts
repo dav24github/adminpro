@@ -4,6 +4,7 @@ import { NopagefoundComponent } from '../shared/nopagefound/nopagefound.componen
 import { AcountSettingComponent } from './acount-setting/acount-setting.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
 import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -53,6 +54,11 @@ const pagesRoutes: Routes = [
         path: 'usuarios',
         component: UsuariosComponent,
         data: { titulo: 'Mantenimiento de usuarios' },
+      },
+      {
+        path: 'hospitales',
+        component: HospitalesComponent,
+        data: { titulo: 'Mantenimiento de hospitales' },
       },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
