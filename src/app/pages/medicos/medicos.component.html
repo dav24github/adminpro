@@ -19,14 +19,14 @@
     <div class="card">
       <div class="card-body">
         <div class="text-right">
-          <button
-            (click)="crearMedico()"
+          <a
+            routerLink="/medico/nuevo"
             type="button"
             class="btn waves-effect waves-light btn-rounded btn-primary"
           >
             <div class="fa fa-plus"></div>
             Crear Médico
-          </button>
+          </a>
 
           <h3 class="card-title" align="left">
             Médicos resgistrados (<small>{{
@@ -55,16 +55,14 @@
                 <td>
                   {{ medico.nombre }}
                 </td>
+                <td>{{ medico.hospital?.nombre }}</td>
                 <td>
-                  {{ medico.hospital!.nombre }}
-                </td>
-                <td>
-                  <button
-                    (click)="editarMedico(medico)"
+                  <a
+                    [routerLink]="'/medico/' + medico._id"
                     class="btn btn-primary"
                   >
-                    <i class="fa fa-save"></i>
-                  </button>
+                    <i class="fa fa-edit"></i>
+                  </a>
 
                   <button
                     (click)="borrarMedico(medico._id!)"

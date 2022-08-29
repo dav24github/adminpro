@@ -36,8 +36,4 @@ export class MedicosComponent implements OnInit {
   borrarMedico(id: string) {
     this._medicoService.borrarMedico(id).subscribe(() => this.cargarMedicos());
   }
-
-  crearMedico() {}
-
-  editarMedico(medico: Medico) {}
 }

@@ -16,7 +16,7 @@ app.get("/", (req, res, next) => {
 
   Medico.find({})
     .skip(desde)
-    .limit(2)
+    // .limit(4)
     .populate("usuario", "nombre email")
     .populate("hospital")
     .exec((err, medicos) => {
@@ -36,6 +36,40 @@ app.get("/", (req, res, next) => {
       });
     });
 });
+
+// ====================================
+// Obtener medico
+// ====================================
+app.get("/:id", (req, res, next) => {
+  var id = req.params.id;
+
+  Medico.findById(id)
+    .populate("usuario", "nombre email img")
+    .populate("hospital")
+    .exec((err, medico) => {
+      if (err) {
+        return res.status(400).json({
+          ok: false,
+          mesaje: "Error burcar medico",
+          errors: err,
+        });
+      }
+
+      if (!medico) {
+        return res.status(400).json({
+          ok: false,
+          mesaje: "El medico con el id " + id + " no existe",
+          errors: { message: "No existe un medico con ese ID" },
+        });
+      }
+
+      res.status(200).json({
+        ok: true,
+        medico: medico,
+      });
+    });
+});
+app.get("/:id", (res, req) => {});
 
 // ====================================
 // Crear medico

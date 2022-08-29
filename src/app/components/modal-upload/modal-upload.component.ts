@@ -30,7 +30,7 @@ export class ModalUploadComponent implements OnInit {
       this._modalService.ocultarModal();
       this.cerrarModal();
       this._modalService.notificacion.emit(resp);
-      Swal.fire('imagen Actualizada', resp.usuario.nombre, 'success');
+      Swal.fire('imagen Actualizada', resp.data.nombre, 'success');
     });
   }
 

@@ -106,7 +106,7 @@ function subirTipo(tipo, id, nombreArchivo, res) {
         return res.status(200).json({
           ok: true,
           mensaje: "Img de usuario actualizada",
-          usuario: usuActualizado,
+          data: usuActualizado,
         });
       });
     });
@@ -143,7 +143,7 @@ function subirTipo(tipo, id, nombreArchivo, res) {
         return res.status(200).json({
           ok: true,
           mensaje: "Img de medico actualizada",
-          medico: medActualizado,
+          data: medActualizado,
         });
       });
     });
@@ -179,7 +179,7 @@ function subirTipo(tipo, id, nombreArchivo, res) {
         return res.status(200).json({
           ok: true,
           mensaje: "Img de hospital actualizada",
-          hospital: hosActualizado,
+          data: hosActualizado,
         });
       });
     });

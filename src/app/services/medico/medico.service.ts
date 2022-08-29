@@ -28,6 +28,12 @@ export class MedicoService {
     );
   }
 
+  cargarMedico(id: string) {
+    let url = URL_SERVICIOS + '/medico/' + id;
+
+    return this.http.get(url).pipe(map((resp: any) => resp.medico));
+  }
+
   buscarMedico(termino: string) {
     let url = URL_SERVICIOS + '/busqueda/coleccion/medicos/' + termino;
 
@@ -47,13 +53,28 @@ export class MedicoService {
 
   guardarMedico(medico: Medico) {
     let url = URL_SERVICIOS + '/medico';
-    url += '?token=' + this._usuarioService.token;
 
-    return this.http.post(url, medico).pipe(
-      map((resp: any) => {
-        Swal.fire('Médico Creado', medico.nombre!, 'success');
-        return resp.medico;
-      })
-    );
+    if (medico._id) {
+      //actualizar
+      url += '/' + medico._id;
+      url += '?token=' + this._usuarioService.token;
+
+      return this.http.put(url, medico).pipe(
+        map((resp: any) => {
+          Swal.fire('Médico Actualizado', medico.nombre!, 'success');
+          return resp.medico;
+        })
+      );
+    } else {
+      //crear
+      url += '?token=' + this._usuarioService.token;
+
+      return this.http.post(url, medico).pipe(
+        map((resp: any) => {
+          Swal.fire('Médico Creado', medico.nombre!, 'success');
+          return resp.medico;
+        })
+      );
+    }
   }
 }
