@@ -9,6 +9,7 @@ import {
   UsuarioService,
   SubirArchivoService,
   HospitalService,
+  MedicoService,
 } from './service.index';
 import { ModalService } from '../components/modal-upload/modal.service';
 
@@ -23,6 +24,7 @@ import { ModalService } from '../components/modal-upload/modal.service';
     SubirArchivoService,
     ModalService,
     HospitalService,
+    MedicoService,
   ],
 })
 export class ServiceModule {}

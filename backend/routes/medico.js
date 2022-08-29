@@ -30,7 +30,7 @@ app.get("/", (req, res, next) => {
       Medico.count({}, (err, conteo) => {
         res.status(200).json({
           ok: true,
-          mensaje: medicos,
+          medicos: medicos,
           total: conteo,
         });
       });

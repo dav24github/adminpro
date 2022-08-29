@@ -1,0 +1,83 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          #input
+          (keyup)="buscarMedicos(input.value)"
+          type="text"
+          class="form-control"
+          placeholder="Buscar medico"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button
+            (click)="crearMedico()"
+            type="button"
+            class="btn waves-effect waves-light btn-rounded btn-primary"
+          >
+            <div class="fa fa-plus"></div>
+            Crear Médico
+          </button>
+
+          <h3 class="card-title" align="left">
+            Médicos resgistrados (<small>{{
+              _medicoService.totalMedicos
+            }}</small
+            >)
+          </h3>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Médico</th>
+                <th>Hospital</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medico of medicos">
+                <td>
+                  <img
+                    [src]="medico.img | imagen: 'medicos'"
+                    class="img-50 img-circle"
+                  />
+                </td>
+                <td>
+                  {{ medico.nombre }}
+                </td>
+                <td>
+                  {{ medico.hospital!.nombre }}
+                </td>
+                <td>
+                  <button
+                    (click)="editarMedico(medico)"
+                    class="btn btn-primary"
+                  >
+                    <i class="fa fa-save"></i>
+                  </button>
+
+                  <button
+                    (click)="borrarMedico(medico._id!)"
+                    class="btn btn-danger"
+                  >
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
