@@ -68,6 +68,6 @@ export class MedicoComponent implements OnInit {
   }
 
   cambiarFoto() {
-    this._modalService.mostrarModal('medicos', this.medico._id!!);
+    this._modalService.mostrarModal('medicos', this.medico._id!);
   }
 }

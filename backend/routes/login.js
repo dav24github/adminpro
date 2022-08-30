@@ -8,6 +8,23 @@ var app = express();
 
 var Usuario = require("../models/usuarios");
 
+var mdAutenticacion = require("../middlewares/autenticacion");
+
+// ====================================
+// Verfica token
+// ====================================
+app.get("/renuevatoken", mdAutenticacion.verificarToken, (req, res) => {
+  var token = jwt.sign({ usuario: req.usuario }, SEED, {
+    expiresIn: 14400, // 4 horas
+  });
+
+  res.status(200).json({
+    ok: true,
+    usuario: req.usuario,
+    token: token,
+  });
+});
+
 // ====================================
 // Autenticación de Google
 // ====================================
@@ -32,6 +49,7 @@ app.post("/google", (req, res) => {
           usuario: usuario,
           token: token,
           id: usuario._id,
+          menu: obtenerMenu(usuario.role),
         });
       }
     } else {
@@ -53,6 +71,7 @@ app.post("/google", (req, res) => {
           usuario: usuario,
           token: token,
           id: usuario._id,
+          menu: obtenerMenu(usuario.role),
         });
       });
     }
@@ -103,8 +122,40 @@ app.post("/", (req, res) => {
       usuario: usuarioDB,
       token: token,
       id: usuarioDB._id,
+      menu: obtenerMenu(usuarioDB.role),
     });
   });
 });
+
+function obtenerMenu(ROLE) {
+  var menu = [
+    {
+      titulo: "Principal",
+      icono: "mdi mdi-gauge",
+      submenu: [
+        { titulo: "Dashboard", url: "/dashboard" },
+        { titulo: "ProgressBar", url: "/progress" },
+        { titulo: "Gráficas", url: "/graficas1" },
+        { titulo: "Promesas", url: "/promesas" },
+        { titulo: "RxJs", url: "/rxjs" },
+      ],
+    },
+    {
+      titulo: "Mantenimientos",
+      icono: "mdi mdi-folder-lock-open",
+      submenu: [
+        // { titulo: "Usuarios", url: "/usuarios" },
+        { titulo: "Hopitales", url: "/hospitales" },
+        { titulo: "Medicos", url: "/medicos" },
+      ],
+    },
+  ];
+
+  if (ROLE === "ADMIN_ROLE") {
+    menu[1].submenu.unshift({ titulo: "Usuarios", url: "/usuarios" });
+  }
+
+  return menu;
+}
 
 module.exports = app;
