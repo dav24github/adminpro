@@ -36,11 +36,16 @@ var busquedaRoutes = require("./routes/busqueda");
 var uploadRoutes = require("./routes/upload");
 var imagenesRoutes = require("./routes/imagenes");
 
-mongoose.connect("mongodb://localhost:27017/hospitalDB", (err, res) => {
-  if (err) throw err;
+mongoose.connect(
+  "mongodb://David_atlas:" +
+    process.env.MONGO_ATLAS_PW +
+    "@cluster0-shard-00-00.tbj07.mongodb.net:27017,cluster0-shard-00-01.tbj07.mongodb.net:27017,cluster0-shard-00-02.tbj07.mongodb.net:27017/admin-pro?ssl=true&replicaSet=atlas-vxzmm6-shard-0&authSource=admin&retryWrites=true&w=majority",
+  (err, res) => {
+    if (err) throw err;
 
-  console.log("base de datos: \x1b[32m%s\x1b[0m", "online");
-});
+    console.log("base de datos: \x1b[32m%s\x1b[0m", "online");
+  }
+);
 
 //Server index config
 var serveIndex = require("serve-index");
